@@ -1,21 +1,10 @@
-package com.acc.app.companyms.company;
+package com.acc.app.jobappms.job.external;
 
-
-import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
-
-@Entity
 public class Company {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+
     private Long id;
     private String name;
     private String description;
-    private Long reviewId;
 
     public Long getId() {
         return id;
@@ -41,21 +30,13 @@ public class Company {
         this.description = description;
     }
 
-    public Long getReviewId() {
-        return reviewId;
-    }
-
-    public void setReviewId(Long reviewId) {
-        this.reviewId = reviewId;
+    public Company(Long id, String name, String description) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
     }
 
     public Company() {
     }
-
-    public Company(Long id, String name, String description, Long reviewId) {
-        this.id = id;
-        this.name = name;
-        this.description = description;
-        this.reviewId = reviewId;
-    }
 }
+

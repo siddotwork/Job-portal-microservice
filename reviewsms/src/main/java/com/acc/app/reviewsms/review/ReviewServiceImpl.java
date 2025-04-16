@@ -1,8 +1,11 @@
 package com.acc.app.reviewsms.review;
 
 
+import com.acc.app.reviewsms.review.dto.ReviewAndCompanyDTO;
+import com.acc.app.reviewsms.review.external.Company;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 import java.util.Optional;
@@ -28,6 +31,16 @@ public class ReviewServiceImpl implements ReviewService {
         }
         return null;
 
+    }
+
+    private ReviewAndCompanyDTO convertToDTO(Company company){
+        ReviewAndCompanyDTO jobWithCompanyDTO=new ReviewAndCompanyDTO();
+        jobWithCompanyDTO.setCompany(company);
+        RestTemplate restTemplate=new RestTemplate();
+        Company company1= restTemplate.getForObject("http://localhost:8083/companies/"+company.getReviewId(), Company.class );
+        jobWithCompanyDTO.setCompany(company);
+
+        return jobWithCompanyDTO;
     }
 
     @Override
